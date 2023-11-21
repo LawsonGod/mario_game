@@ -17,19 +17,18 @@ public class Scene extends JPanel{
     private Image imgDepart;
 
 
-    private ImageIcon icoMario;
-    private Image imgMario;
-
-
     private int xFond1;
     private int xFond2;
     private int dx;
     private int xPosition;
 
+    public Mario mario;
 
     //*****CRÉATION DES CONSTRUCTEURS*****//
     public Scene() {
+
         super();
+
         this.xFond1 = -50;
         this.xFond2 = 750; // resutlat du calcul de la largeur de l'Image - de xFond1
         this.dx = 0;
@@ -38,13 +37,13 @@ public class Scene extends JPanel{
         icoFond = new ImageIcon(getClass().getResource("/image/fondEcran.png"));
         this.imgFond1 = this.icoFond.getImage();
         this.imgFond2 = this.icoFond.getImage();
-        icoMario = new ImageIcon(getClass().getResource("/image/marioMarcheDroite.png"));
-        this.imgMario = this.icoMario.getImage();
+
         this.icoChateau1 = new ImageIcon(getClass().getResource("/image/chateau1.png"));
         this.imgChateau1 = this.icoChateau1.getImage();
         this.icoDepart = new ImageIcon(getClass().getResource("/image/depart.png"));
         this.imgDepart = this.icoDepart.getImage();
 
+        mario = new Mario(300, 245);
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -94,7 +93,7 @@ public class Scene extends JPanel{
 
         g2.drawImage(this.imgFond1, this.xFond1, 0, null);//pour dessiner l'image de fond
         g2.drawImage(this.imgFond2, this.xFond2, 0, null);
-        g2.drawImage(imgMario, 300, 245, null);
+        g2.drawImage(this.mario.getImgMario(), 300, 245, null);
         g2.drawImage(imgChateau1, 10 - this.xPosition, 95, null);
         g2.drawImage(imgDepart, 220 - this.xPosition, 234, null);
     }
