@@ -10,7 +10,13 @@ public class Clavier implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+            if(Main.scene.getxPosition() == -1 ){
+                Main.scene.setxPosition(0);
+                Main.scene.setxFond1(-50);
+                Main.scene.setxFond2(750);
+            }
             Main.scene.setDx(1);
         }
         else if(e.getKeyCode() == KeyEvent. VK_LEFT){
