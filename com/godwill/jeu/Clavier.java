@@ -17,14 +17,23 @@ public class Clavier implements KeyListener {
                 Main.scene.setxFond1(-50);
                 Main.scene.setxFond2(750);
             }
+            Main.scene.mario.setMarche(true);
+            Main.scene.mario.setVersDroite(true);
+            ///Déplacement du font vers la gauche lors de l'appui sur la touche "flèche droite"
             Main.scene.setDx(1);
         }
         else if(e.getKeyCode() == KeyEvent. VK_LEFT){
+            Main.scene.mario.setMarche(true);
+            Main.scene.mario.setVersDroite(false);
+            ///Déplacement du font vers la droite lors de l'appui sur la touche "flèche gauche"
             Main.scene.setDx(-1);
         }
     }
     @Override
-    public void keyReleased(KeyEvent e) {Main.scene.setDx(0);}
+    public void keyReleased(KeyEvent e) {
+        Main.scene.mario.setMarche(false);
+        Main.scene.setDx(0);//remise à 0 de la variable dx de l'ogjet scene lorsque la touche est relaché
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}

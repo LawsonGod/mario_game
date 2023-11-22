@@ -9,7 +9,6 @@ public class Chrono implements Runnable{
     public void run() {
         while(true){
             Main.scene.repaint();
-            System.out.println("ok");
             try {
                 Thread.sleep(PAUSE);
             } catch (InterruptedException e) {}

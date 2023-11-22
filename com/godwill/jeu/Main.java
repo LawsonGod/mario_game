@@ -12,17 +12,17 @@ public class Main {
     public static void main(String[] args) {
 
         //Création de la fenêtre du jeu
-        JFrame fenetreMario = new JFrame("Jeu style Mario by God");
-        fenetreMario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetreMario.setSize(700, 360);
-        fenetreMario.setLocationRelativeTo(null); //pour le centrer à l'écran
-        fenetreMario.setResizable(false);
-        fenetreMario.setAlwaysOnTop(true); //Pour que la fenetre du jeu soit toujours au-dessus des autres fenetres
+        JFrame fenetre = new JFrame("Jeu style Mario by God");
+        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fenetre.setSize(700, 360);
+        fenetre.setLocationRelativeTo(null); //pour le centrer à l'écran
+        fenetre.setResizable(false);
+        fenetre.setAlwaysOnTop(true); //Pour que la fenetre du jeu soit toujours au-dessus des autres fenetres
 
         scene = new Scene();
 
-        fenetreMario.setContentPane(scene);//pour que la scene soit le contenu principal de la fenetre
-        fenetreMario.setVisible(true);//pour rendre la fenetre visible
+        fenetre.setContentPane(scene);//pour que la scene soit le contenu principal de la fenetre
+        fenetre.setVisible(true);//pour rendre la fenetre visible
 
       }
 
