@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
+
 public class Scene extends JPanel{
 
     private ImageIcon icoFond;
@@ -23,6 +24,9 @@ public class Scene extends JPanel{
     private int xPosition;
 
     public Mario mario;
+    public TuyauRouge tuyauRouge1;
+    public Block block1;
+
 
     //*****CRÉATION DES CONSTRUCTEURS*****//
     public Scene() {
@@ -44,6 +48,11 @@ public class Scene extends JPanel{
         this.imgDepart = this.icoDepart.getImage();
 
         mario = new Mario(300, 245);
+        tuyauRouge1 = new TuyauRouge(600, 230);
+        block1 = new Block(400, 100);
+
+
+
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -58,8 +67,6 @@ public class Scene extends JPanel{
     //Les getters et les setters sont des methodes me permettent dans un premier temps de
     //lire la valeur d'un attribut privé d'un classe avec le getters et
     // ensuite de modifier la valeur avec les setters
-
-
     public int getDx() {return dx;}
     public int getxPosition() {return xPosition;}
 
@@ -68,8 +75,10 @@ public class Scene extends JPanel{
     public void setxPosition(int xPosition) {this.xPosition = xPosition;}
     public void setxFond1(int xFond1) {this.xFond1 = xFond1;}
     public void setxFond2(int xFond2) {this.xFond2 = xFond2;}
-    //*****LES METHODES****//
 
+
+
+    //*****LES METHODES****//
     public void deplacementFond(){
 
         if(this.xPosition >= 0){
@@ -82,10 +91,9 @@ public class Scene extends JPanel{
         else if (this.xFond2 == -800){this.xFond2 = 800;}
         else if (this.xFond1 == 800){this.xFond1 = -800;}
         else if (this.xFond2 == 800){this.xFond2 = -800;}
-
     }
-    public void paintComponent(Graphics g) {
 
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 
@@ -96,6 +104,9 @@ public class Scene extends JPanel{
         g2.drawImage(this.mario.marche("mario",35), 300, 245, null);
         g2.drawImage(imgChateau1, 10 - this.xPosition, 95, null);
         g2.drawImage(imgDepart, 220 - this.xPosition, 234, null);
+        g2.drawImage(this.tuyauRouge1.getImgTuyauRouge(), this.tuyauRouge1.getX()-this.xPosition, this.tuyauRouge1.getY(), null);
+        g2.drawImage(this.block1.getImgBlock(), this.block1.getX()-this.xPosition, this.block1.getY(), null);
+
     }
 
 }
