@@ -28,6 +28,10 @@ public class Clavier implements KeyListener {
             ///Déplacement du font vers la droite lors de l'appui sur la touche "flèche gauche"
             Main.scene.setDx(-1);
         }
+        //Mario saute
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            Main.scene.mario.setSaut(true);
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {

@@ -20,8 +20,10 @@ public class Scene extends JPanel{
 
     private int xFond1;
     private int xFond2;
-    private int dx;
-    private int xPosition;
+    private int dx; //déplacement du fond d'écran
+    private int xPosition;//Position absolue dans le jeu
+    private int ySol; //hauteur du sol
+    private int hauteurPlafond; //hauteur courant plafond
 
     public Mario mario;
     public TuyauRouge tuyauRouge1;
@@ -37,6 +39,8 @@ public class Scene extends JPanel{
         this.xFond2 = 750; // resutlat du calcul de la largeur de l'Image - de xFond1
         this.dx = 0; //deplacement du fond d'ecran
         this.xPosition = -1;
+        this.ySol = 293;
+        this.hauteurPlafond = 0;
 
         icoFond = new ImageIcon(getClass().getResource("/image/fondEcran.png"));
         this.imgFond1 = this.icoFond.getImage();
@@ -69,6 +73,8 @@ public class Scene extends JPanel{
     // ensuite de modifier la valeur avec les setters
     public int getDx() {return dx;}
     public int getxPosition() {return xPosition;}
+    public int getySol() {return ySol;}
+    public int getHautPlafond() {return hauteurPlafond;}
 
 
     public void setDx(int dx) {this.dx = dx;}
@@ -111,12 +117,12 @@ public class Scene extends JPanel{
 
         g2.drawImage(this.imgFond1, this.xFond1, 0, null);//pour dessiner l'image de fond
         g2.drawImage(this.imgFond2, this.xFond2, 0, null);
-        g2.drawImage(this.mario.marche("mario",35), 300, 245, null);
         g2.drawImage(imgChateau1, 10 - this.xPosition, 95, null);
         g2.drawImage(imgDepart, 220 - this.xPosition, 234, null);
         g2.drawImage(this.tuyauRouge1.getImgTuyauRouge(), this.tuyauRouge1.getX(), this.tuyauRouge1.getY(), null);
         g2.drawImage(this.block1.getImgBlock(), this.block1.getX()-this.xPosition, this.block1.getY(), null);
-
+        if (this.mario.isSaut()){g2.drawImage(this.mario.saute(),this.mario.getX(), this.mario.getY(), null);}
+        else {g2.drawImage(this.mario.marche("mario", 25), this.mario.getX(), this.mario.getY(), null);}
     }
 
 }
