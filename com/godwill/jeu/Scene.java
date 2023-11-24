@@ -81,8 +81,8 @@ public class Scene extends JPanel{
     public void setxPosition(int xPosition) {this.xPosition = xPosition;}
     public void setxFond1(int xFond1) {this.xFond1 = xFond1;}
     public void setxFond2(int xFond2) {this.xFond2 = xFond2;}
-
-
+    public void setySol(int ySol) {this.ySol = ySol;}
+    public void setHautPlafond(int hauteurPlafond) {this.hauteurPlafond = hauteurPlafond;}
 
     //*****LES METHODES****//
     public void deplacementFond(){
@@ -104,23 +104,31 @@ public class Scene extends JPanel{
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 
-        //Détection des collisions
-        if(this.mario.contactAvant(tuyauRouge1) == true){
-            this.mario.setMarche(false);
-            this.dx = 0;
-        }
+        //Détection des contacts
+        if (this.mario.proche(this.block1)){this.mario.contact(block1);}
+        if (this.mario.proche(this.tuyauRouge1)){this.mario.contact(tuyauRouge1);}
 
+
+
+        //Déplacement de tous les objet fixes du jeu
         this.deplacementFond();
         this.tuyauRouge1.deplacement();
+        this.block1.deplacement();
 
 
 
+        //images de fond
         g2.drawImage(this.imgFond1, this.xFond1, 0, null);//pour dessiner l'image de fond
         g2.drawImage(this.imgFond2, this.xFond2, 0, null);
+        //Image du chateau placé au départ
         g2.drawImage(imgChateau1, 10 - this.xPosition, 95, null);
+        //Image du panneau de départ
         g2.drawImage(imgDepart, 220 - this.xPosition, 234, null);
+        //Image du tuyau rouge
         g2.drawImage(this.tuyauRouge1.getImgTuyauRouge(), this.tuyauRouge1.getX(), this.tuyauRouge1.getY(), null);
-        g2.drawImage(this.block1.getImgBlock(), this.block1.getX()-this.xPosition, this.block1.getY(), null);
+        //Image du bloc
+        g2.drawImage(this.block1.getImgBlock(), this.block1.getX(), this.block1.getY(), null);
+        //Image de Mario qui saute sinon qui marche
         if (this.mario.isSaut()){g2.drawImage(this.mario.saute(),this.mario.getX(), this.mario.getY(), null);}
         else {g2.drawImage(this.mario.marche("mario", 25), this.mario.getX(), this.mario.getY(), null);}
     }

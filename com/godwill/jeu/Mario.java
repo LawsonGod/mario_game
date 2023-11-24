@@ -82,9 +82,31 @@ public class Mario extends Personnage {
         ico = new ImageIcon(getClass().getResource(str));
         img = ico.getImage();
         return img;
-
-
     }
+    public void contact(Objet objet) {
+        //contact horizontal
+        if ((super.contactAvant(objet) == true && this.isVersDroite() == true) || (super.contactArriere(objet) == true && this.isVersDroite() == false )){
+            Main.scene.setDx(0);
+            this.setMarche(false);
+        }
+        //contact avec un objet en dessous
+        if (super.contactDessous(objet) == true && this.saut == true) { //Mario saute sur un objet
+            Main.scene.setySol(objet.getY());
+            this.setMarche(false);
+        }else if (super.contactDessous(objet) == false){  //Mario tombe sur le sol initial
+            Main.scene.setySol(293); //attitude du sol initial
+            if(this.saut == false) {this.setY(243);} //attitude initiale de Mario
+        }
+        //contact avec un objet au-dessus
+        if(super.contactDessus (objet) == true) {
+            Main.scene.setHautPlafond(objet.getY() + objet.getHauteur()); // Le plafond devient le dessous de l'objet
+        }else if(super.contactDessus(objet) == false && this.saut == false){
+            Main.scene.setHautPlafond(0);//altitude du plafond initial (ciel)
+        }
+    }
+
+
+
 }
 
 
