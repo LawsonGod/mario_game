@@ -70,4 +70,15 @@ public class Personnage {
         return img;
     }
 
+    public boolean contactAvant (Objet objet){
+        if (this.isVersDroite() == true) {
+            if (this.x + this.largeur < objet.getX() || this.x + this.largeur > objet.getX() + 5 || this.y + this.hauteur <= objet.getY() || this.y >= objet.getY() + objet.getHauteur()){return false;}
+            else{return true;}
+        } else{return false;}
+
+
+    }
+
+
+
 }

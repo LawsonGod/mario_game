@@ -35,7 +35,7 @@ public class Scene extends JPanel{
 
         this.xFond1 = -50;
         this.xFond2 = 750; // resutlat du calcul de la largeur de l'Image - de xFond1
-        this.dx = 0;
+        this.dx = 0; //deplacement du fond d'ecran
         this.xPosition = -1;
 
         icoFond = new ImageIcon(getClass().getResource("/image/fondEcran.png"));
@@ -94,17 +94,27 @@ public class Scene extends JPanel{
     }
 
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 
+        //Détection des collisions
+        if(this.mario.contactAvant(tuyauRouge1) == true){
+            this.mario.setMarche(false);
+            this.dx = 0;
+        }
+
         this.deplacementFond();
+        this.tuyauRouge1.deplacement();
+
+
 
         g2.drawImage(this.imgFond1, this.xFond1, 0, null);//pour dessiner l'image de fond
         g2.drawImage(this.imgFond2, this.xFond2, 0, null);
         g2.drawImage(this.mario.marche("mario",35), 300, 245, null);
         g2.drawImage(imgChateau1, 10 - this.xPosition, 95, null);
         g2.drawImage(imgDepart, 220 - this.xPosition, 234, null);
-        g2.drawImage(this.tuyauRouge1.getImgTuyauRouge(), this.tuyauRouge1.getX()-this.xPosition, this.tuyauRouge1.getY(), null);
+        g2.drawImage(this.tuyauRouge1.getImgTuyauRouge(), this.tuyauRouge1.getX(), this.tuyauRouge1.getY(), null);
         g2.drawImage(this.block1.getImgBlock(), this.block1.getX()-this.xPosition, this.block1.getY(), null);
 
     }

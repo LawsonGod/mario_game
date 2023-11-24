@@ -1,5 +1,7 @@
 package com.godwill.jeu;
 
+import com.godwill.jeu.Main;
+
 public class Objet {
 
     ///Variables///
@@ -27,6 +29,12 @@ public class Objet {
     public void setY(int y) {this.y = y;}
 
     /////METHODES////////
+    public void deplacement(){
+        if (Main.scene.getxPosition() >= 0){
+            this.x = this.x - Main.scene.getDx();
+        }
+    }
+
 }
 
 
